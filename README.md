@@ -1,4 +1,4 @@
-### What is RBulder
+### What is RBuilder
 RBuilder is a DIY utility by using Ruby to execute build tasks automatically. For example:
 
 - Copy the source code files to a specified environment
@@ -16,9 +16,9 @@ RBuilder is a DIY utility by using Ruby to execute build tasks automatically. Fo
 
 > ruby C:\RBuilder\build.rb -t:execute_test -r:dev035 -env:environment.yml -config:build.yml
 > > -t:<task key>  Required. the task key defined in build configure file
-    -r:<remote server key>  Required. the remote server key defined in environment configure file
-    -config:<build config file path> Required
-    -env:<environment config file path> Required
+> > -r:<remote server key>  Required. the remote server key defined in environment configure file
+> > -config:<build config file path> Required
+> > -env:<environment config file path> Required
     
 ### Add New Build Task
 You can create new build task on necessary. To create a new task
