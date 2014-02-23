@@ -1,0 +1,40 @@
+deploy_source_codes:
+    description: "Deploy source codes"
+    classname: XCopyTask
+    source: "P:/Workspace/src/JBUNIT/src"
+    destination: "{environment::remote::source_copy_to}"
+
+deploy_test_codes:
+    description: "Deploy test codes"
+    depends_on: deploy_source_codes
+    classname: XCopyTask
+    source: "P:/Workspace/src/JBUNIT/test"
+    destination: "{environment::remote::test_copy_to}"
+
+remote_log_in:
+    description: "Remote server log in"
+    depends_on: deploy_test_codes
+    classname: RemoteTelnetLogin
+
+compile_source_codes:
+    description: "Compile source codes"
+    depends_on: remote_log_in
+    classname: CompileJBaseCodes
+    sourcecode_path: "P:/Workspace/src/JBUNIT/src"
+    remote_source_root: "{environment::remote::source_root}"
+    skip_files:
+        - check_dir.bat
+
+compile_test_codes:
+    description: "Compile test codes"
+    depends_on: compile_source_codes
+    classname: CompileJBaseCodes
+    sourcecode_path: "P:/Workspace/src/JBUNIT/test"
+    remote_source_root: "{environment::remote::test_root}"        
+        
+execute_test:
+    description: "Execute tests"
+    depends_on: compile_test_codes
+    classname: ExecuteJBUnitTest
+    remote_jbunit_home: "{environment::remote::JBUNIT_HOME}"  
+    remote_test_root: "{environment::remote::test_execution_home}"

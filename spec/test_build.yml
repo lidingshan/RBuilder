@@ -1,0 +1,7 @@
+tasks:
+    - task1
+    - task2
+
+task1:
+    name: Task1
+    classname: TestTask1

@@ -1,0 +1,44 @@
+# This is the default remote server configuration. If a particular server configuration has different values
+# It can be overridden by the config value in the section of that server configuration
+# Please don't change the name of &DefaultRemoteConfig
+default: &DefaultRemoteConfig
+    # The host name of remote server
+    hostname: <remote host name> 
+    # The user name that will be used to log on remote server
+    username: <remote server user name>
+    # Optional. The logon id that will be used to log on remote server. If it hasn't been configured, the the username will be used.
+    login_id: <remote server login id>
+    # The password to log on remote server
+    password: <remote server login password>
+    # The prompt on terminal to input log on id
+    login_prompt: "Account Name"
+    # The prompt on terminal to input log on password
+    password_prompt: "Password:"
+    # The prompt on terminal to wait for input
+    terminal_prompt: "jsh {username} ~ -->"
+    # The remote location which will copy source code files from local sourcecode_path
+    # Please make sure the network path can be accessed locally
+    source_copy_to: <remote server path that will store the source codes>
+    # The remote location which will copy test code files from local testecode_path
+    # Please make sure the network path can be accessed locally
+    test_copy_to: <remote server path that will store the test codes>
+    # The remote root path what will be used to tell EP.COMPILE where to find the source code file
+    source_root: <remote server path which is the root path of source codes to be compiled>
+    # The remote root path what will be used to tell EP.COMPILE where to find the test code file
+    test_root: <remote server path which is the root path of test codes to be compiled>
+    # The remote root directory that contains all of the tests to be exeucted
+    test_execution_home: <remote server path which is the root path to execute the tests>
+    # The remote full path where JBUNIT utility is existing
+    JBUNIT_HOME: <remote server path which is home path of JBUNIT>
+
+# This is the configuration of a remote server. Please be aware that the name of remote server
+# is case sensitive
+dev035:
+    # This means the configuration is inherited from default configuration. 
+    <<: *DefaultRemoteConfig
+    # Add any different configuration bellow
+
+# dev052:
+#     <<: *DefaultRemoteConfig
+#     username: <overwrite the default value of username configure>
+

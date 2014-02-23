@@ -1,0 +1,37 @@
+# The configuration about localhost where the original source codes and test codes are existing
+# and need to be copied to remote server to compile and test
+# localhost:
+#     # The full path of source codes files. Please always use slash(/) as diretory separator
+#     sourcecode_path: P:/Workspace/src/JBUNIT/src
+#     # The full path of test codes files. Please always use slash(/) as diretory separator
+#     testcode_path: P:/Workspace/src/JBUNIT/test
+#     # The list of file names which won't need to be compiled on remote server
+#     no_compile_files:
+#         - check_dir.bat
+
+# This is the default remote server configuration. If a particular server configuration has different values
+# It can be overridden by the config value in the section of that server configuration
+# Please don't change the name of &DefaultRemoteConfig
+default: &DefaultRemoteConfig
+    # The host name of remote server
+    hostname: INVSYDMDEV035
+    # The user name that will be used to log on remote server
+    username: svc_t24dev035
+    # The logon id that will be used to log on remote server. If it hasn't been configured, the the username will be used.
+    password: HighRoad04
+    login_prompt: Account Name
+    password_prompt: "Password:"
+    terminal_prompt: jsh {username} ~ -->
+    source_copy_to: \\{hostname}\d$\T24Build\bnk.run\LEE.BP\JBUNIT\
+    test_copy_to: \\{hostname}\d$\T24Build\bnk.run\LEE.BP\TEST\
+    source_root: LEE.BP\JBUNIT
+    test_root: LEE.BP\TEST
+    test_execution_home: LEE.BP\TEST
+    JBUNIT_HOME: d:\T24Build\bnk.run\LEE.BP\JBUNIT
+
+dev035:
+    <<: *DefaultRemoteConfig
+    login_id: ap\{username}
+
+dev052:
+    <<: *DefaultRemoteConfig
